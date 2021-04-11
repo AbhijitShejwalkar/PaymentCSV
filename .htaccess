@@ -1,0 +1,16 @@
+<IfModule rewrite_module>
+RewriteEngine on
+
+# Allow large file uploads
+php_value memory_limit 4294967296
+php_value post_max_size 1073741824
+php_value upload_max_filesize 524288000
+
+
+
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+</IfModule>
